@@ -1,0 +1,7 @@
+#include "Generated.xcconfig"
+TRACK_WIDGET_CREATION=
+
+FLUTTER_FLAVOR=local
+PRODUCT_BUNDLE_IDENTIFIER=com.example.flutter-firebase-sample.local
+DISPLAY_NAME=Flutter Firebase Sample(Local)
+FLUTTER_TARGET=lib/main_local.dart
