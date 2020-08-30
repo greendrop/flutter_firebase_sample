@@ -166,6 +166,7 @@
 				3B06AD1E1E4923F5004D2608 /* Thin Binary */,
 				6FD223CCF56CD7C221114D37 /* [CP] Embed Pods Frameworks */,
 				630EE66224F69A0E005454AA /* ShellScript */,
+				63BF84BB24FB66D800A82DB7 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -283,6 +284,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "./replace_google_service_info.sh\n";
+		};
+		63BF84BB24FB66D800A82DB7 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${PODS_ROOT}/Fabric/run\n";
 		};
 		6FD223CCF56CD7C221114D37 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
