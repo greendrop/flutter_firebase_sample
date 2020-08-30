@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_analytics/observer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase_sample/config/app_config.dart';
 import 'package:flutter_firebase_sample/pages/home_page.dart';
@@ -55,6 +57,7 @@ class AppRootMain extends StatefulWidget {
 class _AppRootMainState extends State<AppRootMain> {
   bool isInitialized = false;
   Timer refreshTokenTimer;
+  final analytics = FirebaseAnalytics();
 
   @override
   void dispose() {
@@ -71,16 +74,20 @@ class _AppRootMainState extends State<AppRootMain> {
     }
 
     return MaterialApp(
-        title: 'Flutter Firebase Sample',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-        ),
-        initialRoute: HomePage.routeName,
-        routes: <String, WidgetBuilder>{
-          HomePage.routeName: (BuildContext context) => HomePage(),
-          SignUpPage.routeName: (BuildContext context) => SignUpPage(),
-          SignInPage.routeName: (BuildContext context) => SignInPage(),
-        });
+      title: 'Flutter Firebase Sample',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      initialRoute: HomePage.routeName,
+      routes: <String, WidgetBuilder>{
+        HomePage.routeName: (BuildContext context) => HomePage(),
+        SignUpPage.routeName: (BuildContext context) => SignUpPage(),
+        SignInPage.routeName: (BuildContext context) => SignInPage(),
+      },
+      navigatorObservers: <NavigatorObserver>[
+        FirebaseAnalyticsObserver(analytics: analytics)
+      ],
+    );
   }
 }

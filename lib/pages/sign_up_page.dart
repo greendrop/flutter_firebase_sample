@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase_sample/components/organisms/drawer_content.dart';
 import 'package:flutter_firebase_sample/components/organisms/sign_up_body.dart';
@@ -14,16 +15,46 @@ class SignUpPage extends StatefulWidget {
   State<StatefulWidget> createState() => _SignUpPageState();
 }
 
-class _SignUpPageState extends State<SignUpPage> {
-  bool isInitialized = false;
+class _SignUpPageState extends State<SignUpPage> with RouteAware {
+  final _routeObserver = RouteObserver<PageRoute>();
+  final _analytics = FirebaseAnalytics();
+  bool _isInitialized = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _routeObserver.subscribe(
+        this, ModalRoute.of(context) as PageRoute<dynamic>);
+  }
+
+  @override
+  void dispose() {
+    _routeObserver.unsubscribe(this);
+    super.dispose();
+  }
+
+  @override
+  void didPush() {
+    _analytics.setCurrentScreen(
+        screenName: ModalRoute.of(context).settings.name,
+        screenClassOverride: widget.toString());
+  }
+
+  @override
+  void didPopNext() {
+    print('Sign Up didPopNext');
+    _analytics.setCurrentScreen(
+        screenName: ModalRoute.of(context).settings.name,
+        screenClassOverride: widget.toString());
+  }
 
   @override
   Widget build(BuildContext context) {
-    if (isInitialized == false) {
+    if (_isInitialized == false) {
       Timer.run(() {
         context.read<SignUpFormStateNotifier>().clear();
         setState(() {
-          isInitialized = true;
+          _isInitialized = true;
         });
       });
     }
@@ -33,6 +64,6 @@ class _SignUpPageState extends State<SignUpPage> {
           title: Text(widget.title),
         ),
         drawer: DrawerContent(),
-        body: SignUpBody());
+        body: _isInitialized ? SignUpBody() : Container());
   }
 }
