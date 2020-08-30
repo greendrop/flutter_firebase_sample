@@ -1,3 +1,4 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase_sample/config/app_config.dart';
@@ -10,6 +11,7 @@ import 'package:provider/provider.dart';
 
 class DrawerContent extends StatelessWidget {
   final _appConfig = AppConfig();
+  final _analytics = FirebaseAnalytics();
 
   @override
   Widget build(BuildContext context) {
@@ -41,12 +43,16 @@ class DrawerContent extends StatelessWidget {
         ListTile(
           title: const Text('Sign out'),
           onTap: () async {
-            await FirebaseAuth.instance.signOut();
             context.read<AuthStateNotifier>().setUser(null);
+            await FirebaseAuth.instance.signOut();
+            await _analytics.logEvent(
+                name: _appConfig.analytics.events.signOut,
+                parameters: <String, dynamic>{'id': user.uid});
+            await _analytics.setUserId(null);
             await Fluttertoast.showToast(
               msg: 'Signed out.',
-              backgroundColor: _appConfig.toastBackgroundColor,
-              textColor: _appConfig.toastTextColor,
+              backgroundColor: _appConfig.colors.toastBackground,
+              textColor: _appConfig.colors.toastText,
             );
             await Navigator.of(context)
                 .pushReplacementNamed(HomePage.routeName);

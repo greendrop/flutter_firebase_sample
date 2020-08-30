@@ -1,3 +1,4 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase_sample/components/atoms/center_circular_progress_indicator.dart';
 import 'package:flutter_firebase_sample/components/molecules/sign_up_fields.dart';
@@ -16,6 +17,7 @@ class SignUpBody extends StatefulWidget {
 
 class _SignUpBodyState extends State<SignUpBody> {
   final _appConfig = AppConfig();
+  final _analytics = FirebaseAnalytics();
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -34,47 +36,51 @@ class _SignUpBodyState extends State<SignUpBody> {
         key: _formKey,
         child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  SignUpFormFields(),
-                  Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10),
-                      child: Row(children: <Widget>[
-                        Container(
-                            margin: const EdgeInsets.only(right: 10),
-                            child: RaisedButton(
-                              onPressed: () async {
-                                if (_formKey.currentState.validate()) {
-                                  final authState = await context
-                                      .read<AuthStateNotifier>()
-                                      .createUserWithEmailAndPassword(
-                                          signUpForm.email,
-                                          signUpForm.password);
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: <
+                    Widget>[
+              SignUpFormFields(),
+              Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: Row(children: <Widget>[
+                    Container(
+                        margin: const EdgeInsets.only(right: 10),
+                        child: RaisedButton(
+                          onPressed: () async {
+                            if (_formKey.currentState.validate()) {
+                              final authState = await context
+                                  .read<AuthStateNotifier>()
+                                  .createUserWithEmailAndPassword(
+                                      signUpForm.email, signUpForm.password);
 
-                                  if (authState.isError != null) {
-                                    await Fluttertoast.showToast(
-                                      msg: 'Signed up.',
-                                      backgroundColor:
-                                          _appConfig.toastBackgroundColor,
-                                      textColor: _appConfig.toastTextColor,
-                                    );
-                                    await Navigator.of(context)
-                                        .pushReplacementNamed(
-                                            HomePage.routeName);
-                                  } else {
-                                    await Fluttertoast.showToast(
-                                      msg: authState.errorMessage,
-                                      backgroundColor:
-                                          _appConfig.toastBackgroundColor,
-                                      textColor: _appConfig.toastTextColor,
-                                    );
-                                  }
-                                }
-                              },
-                              child: const Text('SIGN UP'),
-                            ))
-                      ]))
-                ])));
+                              if (authState.isError != null) {
+                                await Fluttertoast.showToast(
+                                  msg: 'Signed up.',
+                                  backgroundColor:
+                                      _appConfig.colors.toastBackground,
+                                  textColor: _appConfig.colors.toastText,
+                                );
+                                await _analytics.setUserId(authState.user.uid);
+                                await _analytics.logEvent(
+                                    name: _appConfig.analytics.events.signIn,
+                                    parameters: <String, dynamic>{
+                                      'id': authState.user.uid
+                                    });
+                                await Navigator.of(context)
+                                    .pushReplacementNamed(HomePage.routeName);
+                              } else {
+                                await Fluttertoast.showToast(
+                                  msg: authState.errorMessage,
+                                  backgroundColor:
+                                      _appConfig.colors.toastBackground,
+                                  textColor: _appConfig.colors.toastText,
+                                );
+                              }
+                            }
+                          },
+                          child: const Text('SIGN UP'),
+                        ))
+                  ]))
+            ])));
   }
 }
