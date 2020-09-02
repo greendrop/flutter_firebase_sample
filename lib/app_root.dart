@@ -7,9 +7,11 @@ import 'package:flutter_firebase_sample/config/app_config.dart';
 import 'package:flutter_firebase_sample/pages/home_page.dart';
 import 'package:flutter_firebase_sample/pages/sign_in_page.dart';
 import 'package:flutter_firebase_sample/pages/sign_up_page.dart';
+import 'package:flutter_firebase_sample/pages/task/task_list_page.dart';
 import 'package:flutter_firebase_sample/states/auth_state.dart';
 import 'package:flutter_firebase_sample/states/sign_in_form_state.dart';
 import 'package:flutter_firebase_sample/states/sign_up_form_state.dart';
+import 'package:flutter_firebase_sample/states/task/task_list_state.dart';
 import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:provider/provider.dart';
 
@@ -43,6 +45,8 @@ class AppRootProvider extends StatelessWidget {
             create: (_) => SignUpFormStateNotifier()),
         StateNotifierProvider<SignInFormStateNotifier, SignInFormState>(
             create: (_) => SignInFormStateNotifier()),
+        StateNotifierProvider<TaskListStateNotifier, TaskListState>(
+            create: (_) => TaskListStateNotifier()),
       ],
       child: AppRootMain(),
     );
@@ -84,6 +88,7 @@ class _AppRootMainState extends State<AppRootMain> {
         HomePage.routeName: (BuildContext context) => HomePage(),
         SignUpPage.routeName: (BuildContext context) => SignUpPage(),
         SignInPage.routeName: (BuildContext context) => SignInPage(),
+        TaskListPage.routeName: (BuildContext context) => TaskListPage(),
       },
       navigatorObservers: <NavigatorObserver>[
         FirebaseAnalyticsObserver(analytics: analytics)
