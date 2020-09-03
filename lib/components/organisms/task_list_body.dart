@@ -43,8 +43,17 @@ class TaskListBody extends StatelessWidget {
 
       if (index == length) {
         if (!isLastFetched) {
-          Timer.run(() {
-            context.read<TaskListStateNotifier>().fetchAdditionalTasks();
+          Timer.run(() async {
+            final taskListState = await context
+                .read<TaskListStateNotifier>()
+                .fetchAdditionalTasks();
+            if (taskListState.isError) {
+              await Fluttertoast.showToast(
+                msg: taskListState.errorMessage,
+                backgroundColor: _appConfig.colors.toastBackground,
+                textColor: _appConfig.colors.toastText,
+              );
+            }
           });
 
           return CenterCircularProgressIndicator();

@@ -80,6 +80,7 @@ class TaskListStateNotifier extends StateNotifier<TaskListState>
   Future<TaskListState> fetchTasks() async {
     final completer = Completer<TaskListState>();
     setTasks(null);
+    setIsLastFetched(false);
     setIsFetching(true);
     setIsError(false);
     setErrorMessage('');
@@ -141,7 +142,7 @@ class TaskListStateNotifier extends StateNotifier<TaskListState>
 
       await query.get().then((querySnapshot) {
         if (querySnapshot.size > 0) {
-          final tasks = <Task>[];
+          final additionalTasks = <Task>[];
           for (final document in querySnapshot.docs) {
             final task = Task()
               ..id = document.id
@@ -152,9 +153,13 @@ class TaskListStateNotifier extends StateNotifier<TaskListState>
                   (document.data()['created_at'] as Timestamp)?.toDate()
               ..updatedAt =
                   (document.data()['updated_at'] as Timestamp)?.toDate();
-            tasks.add(task);
+            additionalTasks.add(task);
             fetchedLastDocument = document;
           }
+          final tasks = [
+            ...state.tasks,
+            ...additionalTasks,
+          ];
           setTasks(tasks);
         } else {
           setIsLastFetched(true);
