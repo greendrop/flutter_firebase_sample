@@ -33,9 +33,7 @@ class _TaskNewPageState extends State<TaskNewPage> {
       appBar: AppBar(
         title: Text(title),
       ),
-      body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: isInitialized ? TaskNewBody() : Container()),
+      body: isInitialized ? TaskNewBody() : Container(),
     );
   }
 }

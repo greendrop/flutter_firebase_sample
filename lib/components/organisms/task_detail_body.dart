@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase_sample/components/atoms/center_circular_progress_indicator.dart';
-import 'package:flutter_firebase_sample/config/app_config.dart';
 import 'package:flutter_firebase_sample/helpers/filter.dart';
 import 'package:flutter_firebase_sample/models/task.dart';
+import 'package:flutter_firebase_sample/pages/task/task_edit_page.dart';
 import 'package:flutter_firebase_sample/states/task/task_detail_state.dart';
 import 'package:provider/provider.dart';
 
@@ -12,7 +12,6 @@ class TaskDetailBody extends StatefulWidget {
 }
 
 class _TaskDetailBodyState extends State<TaskDetailBody> {
-  final _appConfig = AppConfig();
   final _formKey = GlobalKey<FormState>();
   final _titleTextEditingController = TextEditingController();
   final _descriptionTextEditingController = TextEditingController();
@@ -109,16 +108,14 @@ class _TaskDetailBodyState extends State<TaskDetailBody> {
                             margin: const EdgeInsets.only(right: 10),
                             child: RaisedButton(
                               onPressed: () {
-                                /*
-                            Navigator.of(context)
-                                .pushNamed(TaskEditPage.routeName,
-                                arguments: TaskEditArguments(task.id))
-                                .then((value) {
-                              context
-                                  .read<TaskDetailStateNotifier>()
-                                  .fetchTaskById(task.id);
-                            });
-                             */
+                                Navigator.of(context)
+                                    .pushNamed(TaskEditPage.routeName,
+                                        arguments: TaskEditArguments(task.id))
+                                    .then((value) {
+                                  context
+                                      .read<TaskDetailStateNotifier>()
+                                      .fetchTaskById(task.id);
+                                });
                               },
                               child: const Text('EDIT'),
                             )),
