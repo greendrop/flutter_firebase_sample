@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase_sample/components/atoms/center_circular_progress_indicator.dart';
+import 'package:flutter_firebase_sample/config/app_config.dart';
 import 'package:flutter_firebase_sample/helpers/filter.dart';
 import 'package:flutter_firebase_sample/models/task.dart';
 import 'package:flutter_firebase_sample/pages/task/task_edit_page.dart';
+import 'package:flutter_firebase_sample/states/task/task_delete_state.dart';
 import 'package:flutter_firebase_sample/states/task/task_detail_state.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
 class TaskDetailBody extends StatefulWidget {
@@ -12,6 +15,7 @@ class TaskDetailBody extends StatefulWidget {
 }
 
 class _TaskDetailBodyState extends State<TaskDetailBody> {
+  final _appConfig = AppConfig();
   final _formKey = GlobalKey<FormState>();
   final _titleTextEditingController = TextEditingController();
   final _descriptionTextEditingController = TextEditingController();
@@ -125,20 +129,18 @@ class _TaskDetailBodyState extends State<TaskDetailBody> {
                                 onPressed: () async {
                                   final result = await _showDeleteDialog();
                                   if (result == 'OK') {
-                                    /*
-                                final taskDeleteState = await context
-                                    .read<TaskDeleteStateNotifier>()
-                                    .deleteTask(task.id);
-                                if (!taskDeleteState.isError) {
-                                  Navigator.of(context).pop();
-                                  await Fluttertoast.showToast(
-                                    msg: 'Deleted Task.',
-                                    backgroundColor:
-                                    _appConfig.toastBackgroundColor,
-                                    textColor: _appConfig.toastTextColor,
-                                  );
-                                }
-                                 */
+                                    final taskDeleteState = await context
+                                        .read<TaskDeleteStateNotifier>()
+                                        .deleteTask(task.id);
+                                    if (!taskDeleteState.isError) {
+                                      Navigator.of(context).pop();
+                                      await Fluttertoast.showToast(
+                                        msg: 'Deleted Task.',
+                                        backgroundColor:
+                                            _appConfig.colors.toastBackground,
+                                        textColor: _appConfig.colors.toastText,
+                                      );
+                                    }
                                   }
                                 },
                                 child: const Text('DELETE'))),

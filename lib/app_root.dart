@@ -15,6 +15,7 @@ import 'package:flutter_firebase_sample/states/auth_state.dart';
 import 'package:flutter_firebase_sample/states/sign_in_form_state.dart';
 import 'package:flutter_firebase_sample/states/sign_up_form_state.dart';
 import 'package:flutter_firebase_sample/states/task/task_create_state.dart';
+import 'package:flutter_firebase_sample/states/task/task_delete_state.dart';
 import 'package:flutter_firebase_sample/states/task/task_detail_state.dart';
 import 'package:flutter_firebase_sample/states/task/task_form_state.dart';
 import 'package:flutter_firebase_sample/states/task/task_list_state.dart';
@@ -62,6 +63,8 @@ class AppRootProvider extends StatelessWidget {
             create: (_) => TaskCreateStateNotifier()),
         StateNotifierProvider<TaskUpdateStateNotifier, TaskUpdateState>(
             create: (_) => TaskUpdateStateNotifier()),
+        StateNotifierProvider<TaskDeleteStateNotifier, TaskDeleteState>(
+            create: (_) => TaskDeleteStateNotifier()),
       ],
       child: AppRootMain(),
     );
