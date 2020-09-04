@@ -13,7 +13,9 @@ Future<void> main() async {
   FlutterError.onError = Crashlytics.instance.recordFlutterError;
 
   await runZoned(() async {
+    // ignore: unused_local_variable
     final appConfig = AppConfig()..envConfig = EnvConfigProd();
+    // ignore: unused_local_variable
     final performance = FirebasePerformance.instance;
 
     WidgetsFlutterBinding.ensureInitialized();

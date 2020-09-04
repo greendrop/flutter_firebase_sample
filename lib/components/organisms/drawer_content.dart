@@ -5,6 +5,7 @@ import 'package:flutter_firebase_sample/config/app_config.dart';
 import 'package:flutter_firebase_sample/pages/home_page.dart';
 import 'package:flutter_firebase_sample/pages/sign_in_page.dart';
 import 'package:flutter_firebase_sample/pages/sign_up_page.dart';
+import 'package:flutter_firebase_sample/pages/task/task_list_page.dart';
 import 'package:flutter_firebase_sample/states/auth_state.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
@@ -40,6 +41,12 @@ class DrawerContent extends StatelessWidget {
     ];
     if (user != null) {
       children.addAll([
+        ListTile(
+          title: const Text('Tasks'),
+          onTap: () {
+            Navigator.of(context).pushReplacementNamed(TaskListPage.routeName);
+          },
+        ),
         ListTile(
           title: const Text('Sign out'),
           onTap: () async {
