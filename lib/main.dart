@@ -1,7 +1,59 @@
+// Dart imports:
+import 'dart:async';
+
+// Flutter imports:
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
+// Package imports:
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:firebase_remote_config/firebase_remote_config.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await _prepareFirebase();
+  await _prepareFirebaseCrashlytics();
+  await _prepareFirebaseRemoteConfig();
+
+  runZonedGuarded(() {
+    runApp(const MyApp());
+  }, (error, stackTrace) {
+    FirebaseCrashlytics.instance.recordError(error, stackTrace);
+  });
+}
+
+Future<void> _prepareFirebase() async {
+  await Firebase.initializeApp();
+}
+
+Future<void> _prepareFirebaseCrashlytics() async {
+  await FirebaseCrashlytics.instance
+      .setCrashlyticsCollectionEnabled(kDebugMode);
+  final originalOnError = FlutterError.onError!;
+  FlutterError.onError = (errorDetails) async {
+    await FirebaseCrashlytics.instance.recordFlutterError(errorDetails);
+    originalOnError(errorDetails);
+  };
+
+  if (kReleaseMode) {
+    debugPrint = (message, {wrapWidth}) {};
+  }
+}
+
+Future<void> _prepareFirebaseRemoteConfig() async {
+  final remoteConfig = RemoteConfig.instance;
+
+  await remoteConfig.setConfigSettings(RemoteConfigSettings(
+    fetchTimeout: const Duration(seconds: 30),
+    minimumFetchInterval: const Duration(minutes: 12),
+  ));
+
+  await remoteConfig.fetchAndActivate();
+  Timer.periodic(const Duration(minutes: 6), (timer) {
+    remoteConfig.fetchAndActivate();
+  });
 }
 
 class MyApp extends StatelessWidget {
