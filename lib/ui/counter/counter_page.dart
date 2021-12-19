@@ -1,92 +1,12 @@
-// Dart imports:
-import 'dart:async';
-
 // Flutter imports:
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-// Package imports:
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-import 'package:firebase_remote_config/firebase_remote_config.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 // Project imports:
-import 'package:flutter_firebase_sample/app_root.dart';
+import 'package:flutter_firebase_sample/ui/drawer/drawer_content.dart';
+import 'package:flutter_firebase_sample/ui/widgets/app_bar_leading.dart';
 
-Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-
-  await _prepareFirebase();
-  await _prepareFirebaseCrashlytics();
-  await _prepareFirebaseRemoteConfig();
-
-  runZonedGuarded(() {
-    runApp(const ProviderScope(child: AppRoot()));
-  }, (error, stackTrace) {
-    FirebaseCrashlytics.instance.recordError(error, stackTrace);
-  });
-}
-
-Future<void> _prepareFirebase() async {
-  await Firebase.initializeApp();
-}
-
-Future<void> _prepareFirebaseCrashlytics() async {
-  await FirebaseCrashlytics.instance
-      .setCrashlyticsCollectionEnabled(kDebugMode);
-  final originalOnError = FlutterError.onError!;
-  FlutterError.onError = (errorDetails) async {
-    await FirebaseCrashlytics.instance.recordFlutterError(errorDetails);
-    originalOnError(errorDetails);
-  };
-
-  if (kReleaseMode) {
-    debugPrint = (message, {wrapWidth}) {};
-  }
-}
-
-Future<void> _prepareFirebaseRemoteConfig() async {
-  final remoteConfig = RemoteConfig.instance;
-
-  await remoteConfig.setConfigSettings(RemoteConfigSettings(
-    fetchTimeout: const Duration(seconds: 30),
-    minimumFetchInterval: const Duration(minutes: 12),
-  ));
-
-  await remoteConfig.fetchAndActivate();
-  Timer.periodic(const Duration(minutes: 6), (timer) {
-    remoteConfig.fetchAndActivate();
-  });
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
+class CounterPage extends StatefulWidget {
+  const CounterPage({Key? key}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -97,13 +17,11 @@ class MyHomePage extends StatefulWidget {
   // used by the build method of the State. Fields in a Widget subclass are
   // always marked "final".
 
-  final String title;
-
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<CounterPage> createState() => _CounterPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _CounterPageState extends State<CounterPage> {
   int _counter = 0;
 
   void _incrementCounter() {
@@ -129,8 +47,10 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        title: const Text('Counter'),
+        leading: const AppBarLeading(),
       ),
+      drawer: const DrawerContent(),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.

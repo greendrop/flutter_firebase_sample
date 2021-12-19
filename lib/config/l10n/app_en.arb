@@ -1,0 +1,14 @@
+{
+  "@@locale": "en",
+  "appTitle": "Firebase Sample",
+  "counterTitle": "Counter",
+  "settingTitle": "Setting",
+  "settingTheme": "Theme",
+  "settingThemeSystem": "System",
+  "settingThemeLight": "Light",
+  "settingThemeDark": "Dark",
+  "settingLocale": "Language",
+  "settingLocaleSystem": "System",
+  "settingLocaleEnglish": "English",
+  "settingLocaleJapanese": "日本語"
+}
