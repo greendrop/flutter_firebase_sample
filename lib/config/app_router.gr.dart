@@ -22,6 +22,14 @@ class _$AppRouter extends RootStackRouter {
     SettingRoute.name: (routeData) {
       return MaterialPageX<Widget>(
           routeData: routeData, child: const SettingPage());
+    },
+    SignInRoute.name: (routeData) {
+      return MaterialPageX<Widget>(
+          routeData: routeData, child: const SignInPage());
+    },
+    ProfileRoute.name: (routeData) {
+      return MaterialPageX<Widget>(
+          routeData: routeData, child: const ProfilePage());
     }
   };
 
@@ -30,7 +38,9 @@ class _$AppRouter extends RootStackRouter {
         RouteConfig('/#redirect',
             path: '/', redirectTo: '/counter', fullMatch: true),
         RouteConfig(CounterRoute.name, path: '/counter'),
-        RouteConfig(SettingRoute.name, path: '/setting')
+        RouteConfig(SettingRoute.name, path: '/setting'),
+        RouteConfig(SignInRoute.name, path: '/sign_in'),
+        RouteConfig(ProfileRoute.name, path: '/profile')
       ];
 }
 
@@ -48,4 +58,20 @@ class SettingRoute extends PageRouteInfo<void> {
   const SettingRoute() : super(SettingRoute.name, path: '/setting');
 
   static const String name = 'SettingRoute';
+}
+
+/// generated route for
+/// [SignInPage]
+class SignInRoute extends PageRouteInfo<void> {
+  const SignInRoute() : super(SignInRoute.name, path: '/sign_in');
+
+  static const String name = 'SignInRoute';
+}
+
+/// generated route for
+/// [ProfilePage]
+class ProfileRoute extends PageRouteInfo<void> {
+  const ProfileRoute() : super(ProfileRoute.name, path: '/profile');
+
+  static const String name = 'ProfileRoute';
 }

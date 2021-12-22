@@ -7,11 +7,13 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutterfire_ui/i10n.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // Project imports:
 import 'package:flutter_firebase_sample/config/app_router.dart';
 import 'package:flutter_firebase_sample/config/app_theme_data.dart';
+import 'package:flutter_firebase_sample/config/l10n/flutter_fire_ui_ja_localizations_delegate.dart';
 import 'package:flutter_firebase_sample/providers/locale_notifer_provider.dart';
 import 'package:flutter_firebase_sample/providers/theme_mode_notifer_provider.dart';
 
@@ -40,7 +42,11 @@ class AppRoot extends HookConsumerWidget {
     }
 
     return MaterialApp.router(
-      localizationsDelegates: L10n.localizationsDelegates,
+      localizationsDelegates: [
+        ...L10n.localizationsDelegates,
+        FlutterFireUILocalizations.delegate,
+        FlutterFireUIJaLocalizationsDelegate()
+      ],
       supportedLocales: L10n.supportedLocales,
       locale: locale,
       onGenerateTitle: (BuildContext context) => L10n.of(context)!.appTitle,

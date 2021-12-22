@@ -1,6 +1,8 @@
 {
   "@@locale": "en",
   "appTitle": "Firebase Sample",
+  "signIn": "Sign in",
+  "signOut": "Sign out",
   "counterTitle": "Counter",
   "settingTitle": "Setting",
   "settingTheme": "Theme",
@@ -10,5 +12,7 @@
   "settingLocale": "Language",
   "settingLocaleSystem": "System",
   "settingLocaleEnglish": "English",
-  "settingLocaleJapanese": "日本語"
+  "settingLocaleJapanese": "日本語",
+  "signInTitle": "Sign in",
+  "profileTitle": "Profile"
 }
