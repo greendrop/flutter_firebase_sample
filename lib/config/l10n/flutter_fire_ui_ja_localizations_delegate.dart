@@ -5,8 +5,6 @@ import 'package:flutter/widgets.dart';
 // Package imports:
 import 'package:flutterfire_ui/i10n.dart';
 
-class FlutterFireUIJaLocalizations {}
-
 class FlutterFireUIJaLocalizationsDelegate
     extends LocalizationsDelegate<FlutterFireUILocalizations> {
   @override
