@@ -11,7 +11,12 @@
 part of 'app_router.dart';
 
 class _$AppRouter extends RootStackRouter {
-  _$AppRouter([GlobalKey<NavigatorState>? navigatorKey]) : super(navigatorKey);
+  _$AppRouter(
+      {GlobalKey<NavigatorState>? navigatorKey,
+      required this.appRouterAuthGuard})
+      : super(navigatorKey);
+
+  final AppRouterAuthGuard appRouterAuthGuard;
 
   @override
   final Map<String, PageFactory> pagesMap = {
@@ -30,6 +35,10 @@ class _$AppRouter extends RootStackRouter {
     ProfileRoute.name: (routeData) {
       return MaterialPageX<Widget>(
           routeData: routeData, child: const ProfilePage());
+    },
+    TaskListRoute.name: (routeData) {
+      return MaterialPageX<Widget>(
+          routeData: routeData, child: const TaskListPage());
     }
   };
 
@@ -40,7 +49,9 @@ class _$AppRouter extends RootStackRouter {
         RouteConfig(CounterRoute.name, path: '/counter'),
         RouteConfig(SettingRoute.name, path: '/setting'),
         RouteConfig(SignInRoute.name, path: '/sign_in'),
-        RouteConfig(ProfileRoute.name, path: '/profile')
+        RouteConfig(ProfileRoute.name, path: '/profile'),
+        RouteConfig(TaskListRoute.name,
+            path: '/tasks', guards: [appRouterAuthGuard])
       ];
 }
 
@@ -74,4 +85,12 @@ class ProfileRoute extends PageRouteInfo<void> {
   const ProfileRoute() : super(ProfileRoute.name, path: '/profile');
 
   static const String name = 'ProfileRoute';
+}
+
+/// generated route for
+/// [TaskListPage]
+class TaskListRoute extends PageRouteInfo<void> {
+  const TaskListRoute() : super(TaskListRoute.name, path: '/tasks');
+
+  static const String name = 'TaskListRoute';
 }

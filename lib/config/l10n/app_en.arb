@@ -14,5 +14,6 @@
   "settingLocaleEnglish": "English",
   "settingLocaleJapanese": "日本語",
   "signInTitle": "Sign in",
-  "profileTitle": "Profile"
+  "profileTitle": "Profile",
+  "taskListTitle": "Task list"
 }

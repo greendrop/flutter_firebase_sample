@@ -9,7 +9,7 @@ import 'package:flutterfire_ui/auth.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // Project imports:
-import 'package:flutter_firebase_sample/config/app_router.dart';
+import 'package:flutter_firebase_sample/config/routes/app_router.dart';
 import 'package:flutter_firebase_sample/providers/firebase_auth_state_changes_stream_provider.dart';
 import 'package:flutter_firebase_sample/ui/drawer/drawer_content.dart';
 import 'package:flutter_firebase_sample/ui/widgets/app_bar_leading.dart';

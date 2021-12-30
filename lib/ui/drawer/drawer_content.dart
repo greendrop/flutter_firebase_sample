@@ -8,7 +8,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // Project imports:
-import 'package:flutter_firebase_sample/config/app_router.dart';
+import 'package:flutter_firebase_sample/config/routes/app_router.dart';
 import 'package:flutter_firebase_sample/providers/firebase_auth_provider.dart';
 import 'package:flutter_firebase_sample/providers/firebase_auth_state_changes_stream_provider.dart';
 
@@ -85,12 +85,21 @@ class DrawerContent extends HookConsumerWidget {
       },
     );
 
+    final taskListListTile = ListTile(
+      leading: const Icon(FontAwesomeIcons.userAlt),
+      title: Text(l10n.taskListTitle),
+      onTap: () {
+        Navigator.pop(context);
+        AutoRouter.of(context).push(const TaskListRoute());
+      },
+    );
+
     final children = <Widget>[drawerHeader, counterListTile];
 
     if (user == null) {
       children.addAll([signInListTile]);
     } else {
-      children.addAll([profileListTile, signOutListTile]);
+      children.addAll([taskListListTile, profileListTile, signOutListTile]);
     }
 
     children.add(settingListTile);
