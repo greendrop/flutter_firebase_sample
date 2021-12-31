@@ -7,8 +7,8 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // Project imports:
-import 'package:flutter_firebase_sample/providers/locale_notifer_provider.dart';
-import 'package:flutter_firebase_sample/providers/theme_mode_notifer_provider.dart';
+import 'package:flutter_firebase_sample/providers/locale_notifier_provider.dart';
+import 'package:flutter_firebase_sample/providers/theme_mode_notifier_provider.dart';
 
 // Project imports:
 

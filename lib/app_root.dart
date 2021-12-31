@@ -14,8 +14,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter_firebase_sample/config/l10n/flutter_fire_ui_ja_localizations_delegate.dart';
 import 'package:flutter_firebase_sample/config/routes/app_router.dart';
 import 'package:flutter_firebase_sample/config/themes/app_theme_data.dart';
-import 'package:flutter_firebase_sample/providers/locale_notifer_provider.dart';
-import 'package:flutter_firebase_sample/providers/theme_mode_notifer_provider.dart';
+import 'package:flutter_firebase_sample/providers/locale_notifier_provider.dart';
+import 'package:flutter_firebase_sample/providers/theme_mode_notifier_provider.dart';
 
 class AppRoot extends HookConsumerWidget {
   const AppRoot({Key? key}) : super(key: key);

@@ -86,11 +86,11 @@ class DrawerContent extends HookConsumerWidget {
     );
 
     final taskListListTile = ListTile(
-      leading: const Icon(FontAwesomeIcons.userAlt),
+      leading: const Icon(FontAwesomeIcons.listAlt),
       title: Text(l10n.taskListTitle),
       onTap: () {
         Navigator.pop(context);
-        AutoRouter.of(context).push(const TaskListRoute());
+        AutoRouter.of(context).replaceAll([const TaskListRoute()]);
       },
     );
 

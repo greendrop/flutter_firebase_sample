@@ -39,6 +39,14 @@ class _$AppRouter extends RootStackRouter {
     TaskListRoute.name: (routeData) {
       return MaterialPageX<Widget>(
           routeData: routeData, child: const TaskListPage());
+    },
+    TaskDetailRoute.name: (routeData) {
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<TaskDetailRouteArgs>(
+          orElse: () => TaskDetailRouteArgs(id: pathParams.getString('id')));
+      return MaterialPageX<Widget>(
+          routeData: routeData,
+          child: TaskDetailPage(key: args.key, id: args.id));
     }
   };
 
@@ -51,7 +59,9 @@ class _$AppRouter extends RootStackRouter {
         RouteConfig(SignInRoute.name, path: '/sign_in'),
         RouteConfig(ProfileRoute.name, path: '/profile'),
         RouteConfig(TaskListRoute.name,
-            path: '/tasks', guards: [appRouterAuthGuard])
+            path: '/tasks', guards: [appRouterAuthGuard]),
+        RouteConfig(TaskDetailRoute.name,
+            path: '/task/:id', guards: [appRouterAuthGuard])
       ];
 }
 
@@ -93,4 +103,29 @@ class TaskListRoute extends PageRouteInfo<void> {
   const TaskListRoute() : super(TaskListRoute.name, path: '/tasks');
 
   static const String name = 'TaskListRoute';
+}
+
+/// generated route for
+/// [TaskDetailPage]
+class TaskDetailRoute extends PageRouteInfo<TaskDetailRouteArgs> {
+  TaskDetailRoute({Key? key, required String id})
+      : super(TaskDetailRoute.name,
+            path: '/task/:id',
+            args: TaskDetailRouteArgs(key: key, id: id),
+            rawPathParams: {'id': id});
+
+  static const String name = 'TaskDetailRoute';
+}
+
+class TaskDetailRouteArgs {
+  const TaskDetailRouteArgs({this.key, required this.id});
+
+  final Key? key;
+
+  final String id;
+
+  @override
+  String toString() {
+    return 'TaskDetailRouteArgs{key: $key, id: $id}';
+  }
 }

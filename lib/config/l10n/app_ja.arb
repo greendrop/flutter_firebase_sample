@@ -15,5 +15,12 @@
   "settingLocaleJapanese": "日本語",
   "signInTitle": "ログイン",
   "profileTitle": "プロフィール",
-  "taskListTitle": "タスク一覧"
+  "taskListTitle": "タスク一覧",
+  "taskDetailTitle": "タスク詳細",
+  "taskId": "ID",
+  "taskTitle": "タイトル",
+  "taskDescription": "詳細",
+  "taskDone": "Done",
+  "taskCreatedAt": "登録日時",
+  "taskUpdatedAt": "更新日時"
 }
