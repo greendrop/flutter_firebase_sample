@@ -4,7 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 // Project imports:
 import 'package:flutter_firebase_sample/entities/task.dart';
 import 'package:flutter_firebase_sample/providers/firebase_firestore_provider.dart';
-import 'package:flutter_firebase_sample/states/task_detail_state.dart';
+import 'package:flutter_firebase_sample/states/task/task_detail_state.dart';
 
 class TaskDetailStateNotifier extends StateNotifier<TaskDetailState> {
   TaskDetailStateNotifier({required this.ref}) : super(TaskDetailState());

@@ -23,6 +23,7 @@ class _$TaskTearOff {
 
   _Task call(
       {String? id,
+      @JsonKey(name: 'user_id') String? userId,
       String? title,
       String? description,
       bool? done,
@@ -30,6 +31,7 @@ class _$TaskTearOff {
       @JsonKey(name: 'updated_at') DateTime? updatedAt}) {
     return _Task(
       id: id,
+      userId: userId,
       title: title,
       description: description,
       done: done,
@@ -49,6 +51,8 @@ const $Task = _$TaskTearOff();
 /// @nodoc
 mixin _$Task {
   String? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'user_id')
+  String? get userId => throw _privateConstructorUsedError;
   String? get title => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   bool? get done => throw _privateConstructorUsedError;
@@ -68,6 +72,7 @@ abstract class $TaskCopyWith<$Res> {
       _$TaskCopyWithImpl<$Res>;
   $Res call(
       {String? id,
+      @JsonKey(name: 'user_id') String? userId,
       String? title,
       String? description,
       bool? done,
@@ -86,6 +91,7 @@ class _$TaskCopyWithImpl<$Res> implements $TaskCopyWith<$Res> {
   @override
   $Res call({
     Object? id = freezed,
+    Object? userId = freezed,
     Object? title = freezed,
     Object? description = freezed,
     Object? done = freezed,
@@ -96,6 +102,10 @@ class _$TaskCopyWithImpl<$Res> implements $TaskCopyWith<$Res> {
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      userId: userId == freezed
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
               as String?,
       title: title == freezed
           ? _value.title
@@ -128,6 +138,7 @@ abstract class _$TaskCopyWith<$Res> implements $TaskCopyWith<$Res> {
   @override
   $Res call(
       {String? id,
+      @JsonKey(name: 'user_id') String? userId,
       String? title,
       String? description,
       bool? done,
@@ -147,6 +158,7 @@ class __$TaskCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? userId = freezed,
     Object? title = freezed,
     Object? description = freezed,
     Object? done = freezed,
@@ -157,6 +169,10 @@ class __$TaskCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      userId: userId == freezed
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
               as String?,
       title: title == freezed
           ? _value.title
@@ -184,19 +200,24 @@ class __$TaskCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Task implements _Task {
+class _$_Task extends _Task {
   _$_Task(
       {this.id,
+      @JsonKey(name: 'user_id') this.userId,
       this.title,
       this.description,
       this.done,
       @JsonKey(name: 'created_at') this.createdAt,
-      @JsonKey(name: 'updated_at') this.updatedAt});
+      @JsonKey(name: 'updated_at') this.updatedAt})
+      : super._();
 
   factory _$_Task.fromJson(Map<String, dynamic> json) => _$$_TaskFromJson(json);
 
   @override
   final String? id;
+  @override
+  @JsonKey(name: 'user_id')
+  final String? userId;
   @override
   final String? title;
   @override
@@ -212,7 +233,7 @@ class _$_Task implements _Task {
 
   @override
   String toString() {
-    return 'Task(id: $id, title: $title, description: $description, done: $done, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'Task(id: $id, userId: $userId, title: $title, description: $description, done: $done, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -221,6 +242,7 @@ class _$_Task implements _Task {
         (other.runtimeType == runtimeType &&
             other is _Task &&
             const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.userId, userId) &&
             const DeepCollectionEquality().equals(other.title, title) &&
             const DeepCollectionEquality()
                 .equals(other.description, description) &&
@@ -233,6 +255,7 @@ class _$_Task implements _Task {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(userId),
       const DeepCollectionEquality().hash(title),
       const DeepCollectionEquality().hash(description),
       const DeepCollectionEquality().hash(done),
@@ -250,19 +273,24 @@ class _$_Task implements _Task {
   }
 }
 
-abstract class _Task implements Task {
+abstract class _Task extends Task {
   factory _Task(
       {String? id,
+      @JsonKey(name: 'user_id') String? userId,
       String? title,
       String? description,
       bool? done,
       @JsonKey(name: 'created_at') DateTime? createdAt,
       @JsonKey(name: 'updated_at') DateTime? updatedAt}) = _$_Task;
+  _Task._() : super._();
 
   factory _Task.fromJson(Map<String, dynamic> json) = _$_Task.fromJson;
 
   @override
   String? get id;
+  @override
+  @JsonKey(name: 'user_id')
+  String? get userId;
   @override
   String? get title;
   @override

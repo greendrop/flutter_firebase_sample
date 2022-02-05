@@ -40,6 +40,10 @@ class _$AppRouter extends RootStackRouter {
       return MaterialPageX<Widget>(
           routeData: routeData, child: const TaskListPage());
     },
+    TaskCreateRoute.name: (routeData) {
+      return MaterialPageX<Widget>(
+          routeData: routeData, child: const TaskCreatePage());
+    },
     TaskDetailRoute.name: (routeData) {
       final pathParams = routeData.inheritedPathParams;
       final args = routeData.argsAs<TaskDetailRouteArgs>(
@@ -60,6 +64,8 @@ class _$AppRouter extends RootStackRouter {
         RouteConfig(ProfileRoute.name, path: '/profile'),
         RouteConfig(TaskListRoute.name,
             path: '/tasks', guards: [appRouterAuthGuard]),
+        RouteConfig(TaskCreateRoute.name,
+            path: '/task/new', guards: [appRouterAuthGuard]),
         RouteConfig(TaskDetailRoute.name,
             path: '/task/:id', guards: [appRouterAuthGuard])
       ];
@@ -103,6 +109,14 @@ class TaskListRoute extends PageRouteInfo<void> {
   const TaskListRoute() : super(TaskListRoute.name, path: '/tasks');
 
   static const String name = 'TaskListRoute';
+}
+
+/// generated route for
+/// [TaskCreatePage]
+class TaskCreateRoute extends PageRouteInfo<void> {
+  const TaskCreateRoute() : super(TaskCreateRoute.name, path: '/task/new');
+
+  static const String name = 'TaskCreateRoute';
 }
 
 /// generated route for

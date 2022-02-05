@@ -13,9 +13,9 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // Project imports:
 import 'package:flutter_firebase_sample/entities/task.dart';
-import 'package:flutter_firebase_sample/providers/task_detail_state_notifier_provider.dart';
+import 'package:flutter_firebase_sample/providers/task/task_detail_state_notifier_provider.dart';
 import 'package:flutter_firebase_sample/ui/drawer/drawer_content.dart';
-import 'package:flutter_firebase_sample/ui/task_detail/task_detail.dart';
+import 'package:flutter_firebase_sample/ui/task/task_detail/task_detail.dart';
 import 'package:flutter_firebase_sample/ui/widgets/app_bar_leading.dart';
 
 class TaskDetailPage extends HookConsumerWidget {
@@ -35,23 +35,26 @@ class TaskDetailPage extends HookConsumerWidget {
       return () {};
     }, []);
 
+    final appBar = AppBar(
+      title: Text(L10n.of(context)!.taskDetailTitle),
+      leading: const AppBarLeading(),
+    );
+    const drawer = DrawerContent();
     final taskDetailState = ref.watch(taskDetailStateNotifierProvider);
     final taskDocument = taskDetailState.taskDocument;
+    final body = taskDocument == null
+        ? Container()
+        : StreamBuilder<DocumentSnapshot<Task>>(
+            stream: taskDocument.snapshots(),
+            builder: (context, snapshot) {
+              final task = snapshot.data?.data();
+              return task == null ? Container() : TaskDetail(task: task);
+            });
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(L10n.of(context)!.taskDetailTitle),
-        leading: const AppBarLeading(),
-      ),
-      drawer: const DrawerContent(),
-      body: taskDocument == null
-          ? Container()
-          : StreamBuilder<DocumentSnapshot<Task>>(
-              stream: taskDocument.snapshots(),
-              builder: (context, snapshot) {
-                final task = snapshot.data?.data();
-                return task == null ? Container() : TaskDetail(task: task);
-              }),
+      appBar: appBar,
+      drawer: drawer,
+      body: body,
     );
   }
 }

@@ -10,8 +10,9 @@ import 'package:flutter_firebase_sample/ui/counter/counter_page.dart';
 import 'package:flutter_firebase_sample/ui/profile/profile_page.dart';
 import 'package:flutter_firebase_sample/ui/setting/setting_page.dart';
 import 'package:flutter_firebase_sample/ui/sign_in/sign_in_page.dart';
-import 'package:flutter_firebase_sample/ui/task_detail/task_detail_page.dart';
-import 'package:flutter_firebase_sample/ui/task_list/task_list_page.dart';
+import 'package:flutter_firebase_sample/ui/task/task_create/task_create_page.dart';
+import 'package:flutter_firebase_sample/ui/task/task_detail/task_detail_page.dart';
+import 'package:flutter_firebase_sample/ui/task/task_list/task_list_page.dart';
 
 part 'app_router.gr.dart';
 
@@ -24,6 +25,8 @@ part 'app_router.gr.dart';
     AutoRoute<Widget>(path: '/profile', page: ProfilePage),
     AutoRoute<Widget>(
         path: '/tasks', page: TaskListPage, guards: [AppRouterAuthGuard]),
+    AutoRoute<Widget>(
+        path: '/task/new', page: TaskCreatePage, guards: [AppRouterAuthGuard]),
     AutoRoute<Widget>(
         path: '/task/:id', page: TaskDetailPage, guards: [AppRouterAuthGuard]),
   ],
