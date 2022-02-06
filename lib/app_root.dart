@@ -1,119 +1,60 @@
+// Dart imports:
 import 'dart:async';
 
-import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:firebase_analytics/observer.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:flutter_firebase_sample/config/app_config.dart';
-import 'package:flutter_firebase_sample/pages/home_page.dart';
-import 'package:flutter_firebase_sample/pages/sign_in_page.dart';
-import 'package:flutter_firebase_sample/pages/sign_up_page.dart';
-import 'package:flutter_firebase_sample/pages/task/task_detail_page.dart';
-import 'package:flutter_firebase_sample/pages/task/task_edit_page.dart';
-import 'package:flutter_firebase_sample/pages/task/task_list_page.dart';
-import 'package:flutter_firebase_sample/pages/task/task_new_page.dart';
-import 'package:flutter_firebase_sample/states/auth_state.dart';
-import 'package:flutter_firebase_sample/states/sign_in_form_state.dart';
-import 'package:flutter_firebase_sample/states/sign_up_form_state.dart';
-import 'package:flutter_firebase_sample/states/task/task_create_state.dart';
-import 'package:flutter_firebase_sample/states/task/task_delete_state.dart';
-import 'package:flutter_firebase_sample/states/task/task_detail_state.dart';
-import 'package:flutter_firebase_sample/states/task/task_form_state.dart';
-import 'package:flutter_firebase_sample/states/task/task_list_state.dart';
-import 'package:flutter_firebase_sample/states/task/task_update_state.dart';
-import 'package:flutter_state_notifier/flutter_state_notifier.dart';
-import 'package:provider/provider.dart';
 
-class AppRoot extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final appConfig = AppConfig();
-    if (!appConfig.envConfig.displayEnv) {
-      return AppRootProvider();
-    }
+// Package imports:
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutterfire_ui/i10n.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-    return Directionality(
-      textDirection: TextDirection.ltr,
-      child: Banner(
-          color: Colors.red,
-          message: appConfig.envConfig.env.toUpperCase(),
-          location: BannerLocation.topStart,
-          child: AppRootProvider()),
-    );
-  }
-}
+// Project imports:
+import 'package:flutter_firebase_sample/config/l10n/flutter_fire_ui_ja_localizations_delegate.dart';
+import 'package:flutter_firebase_sample/config/routes/app_router.dart';
+import 'package:flutter_firebase_sample/config/themes/app_theme_data.dart';
+import 'package:flutter_firebase_sample/providers/locale_notifier_provider.dart';
+import 'package:flutter_firebase_sample/providers/theme_mode_notifier_provider.dart';
 
-class AppRootProvider extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        StateNotifierProvider<AuthStateNotifier, AuthState>(
-            create: (_) => AuthStateNotifier()),
-        StateNotifierProvider<SignUpFormStateNotifier, SignUpFormState>(
-            create: (_) => SignUpFormStateNotifier()),
-        StateNotifierProvider<SignInFormStateNotifier, SignInFormState>(
-            create: (_) => SignInFormStateNotifier()),
-        StateNotifierProvider<TaskListStateNotifier, TaskListState>(
-            create: (_) => TaskListStateNotifier()),
-        StateNotifierProvider<TaskDetailStateNotifier, TaskDetailState>(
-            create: (_) => TaskDetailStateNotifier()),
-        StateNotifierProvider<TaskFormStateNotifier, TaskFormState>(
-            create: (_) => TaskFormStateNotifier()),
-        StateNotifierProvider<TaskCreateStateNotifier, TaskCreateState>(
-            create: (_) => TaskCreateStateNotifier()),
-        StateNotifierProvider<TaskUpdateStateNotifier, TaskUpdateState>(
-            create: (_) => TaskUpdateStateNotifier()),
-        StateNotifierProvider<TaskDeleteStateNotifier, TaskDeleteState>(
-            create: (_) => TaskDeleteStateNotifier()),
-      ],
-      child: AppRootMain(),
-    );
-  }
-}
-
-class AppRootMain extends StatefulWidget {
-  @override
-  _AppRootMainState createState() => _AppRootMainState();
-}
-
-class _AppRootMainState extends State<AppRootMain> {
-  bool isInitialized = false;
-  Timer refreshTokenTimer;
-  final analytics = FirebaseAnalytics();
+class AppRoot extends HookConsumerWidget {
+  const AppRoot({Key? key}) : super(key: key);
 
   @override
-  void dispose() {
-    super.dispose();
-    refreshTokenTimer.cancel();
-  }
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isInitialized = useState(false);
+    final appRouter = useMemoized(AppRouter.new);
+    final themeMode = ref.watch(themeModeNotifierProvider);
+    final locale = ref.watch(localeNotifierProvider);
 
-  @override
-  Widget build(BuildContext context) {
-    if (isInitialized == false) {
-      setState(() {
-        isInitialized = true;
+    useEffect(() {
+      Timer.run(() async {
+        await ref.read(themeModeNotifierProvider.notifier).initialize();
+        await ref.read(localeNotifierProvider.notifier).initialize();
+        isInitialized.value = true;
       });
+
+      return () {};
+    }, []);
+
+    if (!isInitialized.value) {
+      return const Center(child: CircularProgressIndicator());
     }
 
-    return MaterialApp(
-      title: 'Flutter Firebase Sample',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      initialRoute: HomePage.routeName,
-      routes: <String, WidgetBuilder>{
-        HomePage.routeName: (BuildContext context) => HomePage(),
-        SignUpPage.routeName: (BuildContext context) => SignUpPage(),
-        SignInPage.routeName: (BuildContext context) => SignInPage(),
-        TaskListPage.routeName: (BuildContext context) => TaskListPage(),
-        TaskDetailPage.routeName: (BuildContext context) => TaskDetailPage(),
-        TaskNewPage.routeName: (BuildContext context) => TaskNewPage(),
-        TaskEditPage.routeName: (BuildContext context) => TaskEditPage(),
-      },
-      navigatorObservers: <NavigatorObserver>[
-        FirebaseAnalyticsObserver(analytics: analytics)
+    return MaterialApp.router(
+      localizationsDelegates: [
+        ...L10n.localizationsDelegates,
+        FlutterFireUILocalizations.delegate,
+        FlutterFireUIJaLocalizationsDelegate()
       ],
+      supportedLocales: L10n.supportedLocales,
+      locale: locale,
+      onGenerateTitle: (BuildContext context) => L10n.of(context)!.appTitle,
+      theme: AppThemeData().light,
+      darkTheme: AppThemeData().dark,
+      themeMode: themeMode,
+      routeInformationParser: appRouter.defaultRouteParser(),
+      routerDelegate: appRouter.delegate(),
     );
   }
 }

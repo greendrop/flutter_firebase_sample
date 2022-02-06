@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'task_list_state.dart';
 
@@ -8,60 +9,42 @@ part of 'task_list_state.dart';
 // **************************************************************************
 
 T _$identity<T>(T value) => value;
-TaskListState _$TaskListStateFromJson(Map<String, dynamic> json) {
-  return _TaskListState.fromJson(json);
-}
 
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
+/// @nodoc
 class _$TaskListStateTearOff {
   const _$TaskListStateTearOff();
 
-// ignore: unused_element
-  _TaskListState call(
-      {String authUserId = '',
-      List<Task> tasks,
-      bool isLastFetched = true,
-      bool isFetching = false,
-      bool isError = false,
-      String errorMessage = ''}) {
+  _TaskListState call({Query<Task>? taskListQuery}) {
     return _TaskListState(
-      authUserId: authUserId,
-      tasks: tasks,
-      isLastFetched: isLastFetched,
-      isFetching: isFetching,
-      isError: isError,
-      errorMessage: errorMessage,
+      taskListQuery: taskListQuery,
     );
   }
 }
 
-// ignore: unused_element
+/// @nodoc
 const $TaskListState = _$TaskListStateTearOff();
 
+/// @nodoc
 mixin _$TaskListState {
-  String get authUserId;
-  List<Task> get tasks;
-  bool get isLastFetched;
-  bool get isFetching;
-  bool get isError;
-  String get errorMessage;
+  Query<Task>? get taskListQuery => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson();
-  $TaskListStateCopyWith<TaskListState> get copyWith;
+  @JsonKey(ignore: true)
+  $TaskListStateCopyWith<TaskListState> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
+/// @nodoc
 abstract class $TaskListStateCopyWith<$Res> {
   factory $TaskListStateCopyWith(
           TaskListState value, $Res Function(TaskListState) then) =
       _$TaskListStateCopyWithImpl<$Res>;
-  $Res call(
-      {String authUserId,
-      List<Task> tasks,
-      bool isLastFetched,
-      bool isFetching,
-      bool isError,
-      String errorMessage});
+  $Res call({Query<Task>? taskListQuery});
 }
 
+/// @nodoc
 class _$TaskListStateCopyWithImpl<$Res>
     implements $TaskListStateCopyWith<$Res> {
   _$TaskListStateCopyWithImpl(this._value, this._then);
@@ -72,45 +55,28 @@ class _$TaskListStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object authUserId = freezed,
-    Object tasks = freezed,
-    Object isLastFetched = freezed,
-    Object isFetching = freezed,
-    Object isError = freezed,
-    Object errorMessage = freezed,
+    Object? taskListQuery = freezed,
   }) {
     return _then(_value.copyWith(
-      authUserId:
-          authUserId == freezed ? _value.authUserId : authUserId as String,
-      tasks: tasks == freezed ? _value.tasks : tasks as List<Task>,
-      isLastFetched: isLastFetched == freezed
-          ? _value.isLastFetched
-          : isLastFetched as bool,
-      isFetching:
-          isFetching == freezed ? _value.isFetching : isFetching as bool,
-      isError: isError == freezed ? _value.isError : isError as bool,
-      errorMessage: errorMessage == freezed
-          ? _value.errorMessage
-          : errorMessage as String,
+      taskListQuery: taskListQuery == freezed
+          ? _value.taskListQuery
+          : taskListQuery // ignore: cast_nullable_to_non_nullable
+              as Query<Task>?,
     ));
   }
 }
 
+/// @nodoc
 abstract class _$TaskListStateCopyWith<$Res>
     implements $TaskListStateCopyWith<$Res> {
   factory _$TaskListStateCopyWith(
           _TaskListState value, $Res Function(_TaskListState) then) =
       __$TaskListStateCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {String authUserId,
-      List<Task> tasks,
-      bool isLastFetched,
-      bool isFetching,
-      bool isError,
-      String errorMessage});
+  $Res call({Query<Task>? taskListQuery});
 }
 
+/// @nodoc
 class __$TaskListStateCopyWithImpl<$Res>
     extends _$TaskListStateCopyWithImpl<$Res>
     implements _$TaskListStateCopyWith<$Res> {
@@ -123,138 +89,57 @@ class __$TaskListStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object authUserId = freezed,
-    Object tasks = freezed,
-    Object isLastFetched = freezed,
-    Object isFetching = freezed,
-    Object isError = freezed,
-    Object errorMessage = freezed,
+    Object? taskListQuery = freezed,
   }) {
     return _then(_TaskListState(
-      authUserId:
-          authUserId == freezed ? _value.authUserId : authUserId as String,
-      tasks: tasks == freezed ? _value.tasks : tasks as List<Task>,
-      isLastFetched: isLastFetched == freezed
-          ? _value.isLastFetched
-          : isLastFetched as bool,
-      isFetching:
-          isFetching == freezed ? _value.isFetching : isFetching as bool,
-      isError: isError == freezed ? _value.isError : isError as bool,
-      errorMessage: errorMessage == freezed
-          ? _value.errorMessage
-          : errorMessage as String,
+      taskListQuery: taskListQuery == freezed
+          ? _value.taskListQuery
+          : taskListQuery // ignore: cast_nullable_to_non_nullable
+              as Query<Task>?,
     ));
   }
 }
 
-@JsonSerializable()
-class _$_TaskListState implements _TaskListState {
-  const _$_TaskListState(
-      {this.authUserId = '',
-      this.tasks,
-      this.isLastFetched = true,
-      this.isFetching = false,
-      this.isError = false,
-      this.errorMessage = ''})
-      : assert(authUserId != null),
-        assert(isLastFetched != null),
-        assert(isFetching != null),
-        assert(isError != null),
-        assert(errorMessage != null);
+/// @nodoc
 
-  factory _$_TaskListState.fromJson(Map<String, dynamic> json) =>
-      _$_$_TaskListStateFromJson(json);
+class _$_TaskListState extends _TaskListState {
+  _$_TaskListState({this.taskListQuery}) : super._();
 
-  @JsonKey(defaultValue: '')
   @override
-  final String authUserId;
-  @override
-  final List<Task> tasks;
-  @JsonKey(defaultValue: true)
-  @override
-  final bool isLastFetched;
-  @JsonKey(defaultValue: false)
-  @override
-  final bool isFetching;
-  @JsonKey(defaultValue: false)
-  @override
-  final bool isError;
-  @JsonKey(defaultValue: '')
-  @override
-  final String errorMessage;
+  final Query<Task>? taskListQuery;
 
   @override
   String toString() {
-    return 'TaskListState(authUserId: $authUserId, tasks: $tasks, isLastFetched: $isLastFetched, isFetching: $isFetching, isError: $isError, errorMessage: $errorMessage)';
+    return 'TaskListState(taskListQuery: $taskListQuery)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _TaskListState &&
-            (identical(other.authUserId, authUserId) ||
-                const DeepCollectionEquality()
-                    .equals(other.authUserId, authUserId)) &&
-            (identical(other.tasks, tasks) ||
-                const DeepCollectionEquality().equals(other.tasks, tasks)) &&
-            (identical(other.isLastFetched, isLastFetched) ||
-                const DeepCollectionEquality()
-                    .equals(other.isLastFetched, isLastFetched)) &&
-            (identical(other.isFetching, isFetching) ||
-                const DeepCollectionEquality()
-                    .equals(other.isFetching, isFetching)) &&
-            (identical(other.isError, isError) ||
-                const DeepCollectionEquality()
-                    .equals(other.isError, isError)) &&
-            (identical(other.errorMessage, errorMessage) ||
-                const DeepCollectionEquality()
-                    .equals(other.errorMessage, errorMessage)));
+        (other.runtimeType == runtimeType &&
+            other is _TaskListState &&
+            const DeepCollectionEquality()
+                .equals(other.taskListQuery, taskListQuery));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(authUserId) ^
-      const DeepCollectionEquality().hash(tasks) ^
-      const DeepCollectionEquality().hash(isLastFetched) ^
-      const DeepCollectionEquality().hash(isFetching) ^
-      const DeepCollectionEquality().hash(isError) ^
-      const DeepCollectionEquality().hash(errorMessage);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(taskListQuery));
 
+  @JsonKey(ignore: true)
   @override
   _$TaskListStateCopyWith<_TaskListState> get copyWith =>
       __$TaskListStateCopyWithImpl<_TaskListState>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$_$_TaskListStateToJson(this);
-  }
 }
 
-abstract class _TaskListState implements TaskListState {
-  const factory _TaskListState(
-      {String authUserId,
-      List<Task> tasks,
-      bool isLastFetched,
-      bool isFetching,
-      bool isError,
-      String errorMessage}) = _$_TaskListState;
-
-  factory _TaskListState.fromJson(Map<String, dynamic> json) =
-      _$_TaskListState.fromJson;
+abstract class _TaskListState extends TaskListState {
+  factory _TaskListState({Query<Task>? taskListQuery}) = _$_TaskListState;
+  _TaskListState._() : super._();
 
   @override
-  String get authUserId;
+  Query<Task>? get taskListQuery;
   @override
-  List<Task> get tasks;
-  @override
-  bool get isLastFetched;
-  @override
-  bool get isFetching;
-  @override
-  bool get isError;
-  @override
-  String get errorMessage;
-  @override
-  _$TaskListStateCopyWith<_TaskListState> get copyWith;
+  @JsonKey(ignore: true)
+  _$TaskListStateCopyWith<_TaskListState> get copyWith =>
+      throw _privateConstructorUsedError;
 }

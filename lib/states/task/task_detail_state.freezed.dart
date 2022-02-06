@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'task_detail_state.dart';
 
@@ -8,56 +9,43 @@ part of 'task_detail_state.dart';
 // **************************************************************************
 
 T _$identity<T>(T value) => value;
-TaskDetailState _$TaskDetailStateFromJson(Map<String, dynamic> json) {
-  return _TaskDetailState.fromJson(json);
-}
 
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
+/// @nodoc
 class _$TaskDetailStateTearOff {
   const _$TaskDetailStateTearOff();
 
-// ignore: unused_element
-  _TaskDetailState call(
-      {String authUserId = '',
-      Task task,
-      bool isFetching = false,
-      bool isError = false,
-      String errorMessage = ''}) {
+  _TaskDetailState call({DocumentReference<Task>? taskDocument}) {
     return _TaskDetailState(
-      authUserId: authUserId,
-      task: task,
-      isFetching: isFetching,
-      isError: isError,
-      errorMessage: errorMessage,
+      taskDocument: taskDocument,
     );
   }
 }
 
-// ignore: unused_element
+/// @nodoc
 const $TaskDetailState = _$TaskDetailStateTearOff();
 
+/// @nodoc
 mixin _$TaskDetailState {
-  String get authUserId;
-  Task get task;
-  bool get isFetching;
-  bool get isError;
-  String get errorMessage;
+  DocumentReference<Task>? get taskDocument =>
+      throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson();
-  $TaskDetailStateCopyWith<TaskDetailState> get copyWith;
+  @JsonKey(ignore: true)
+  $TaskDetailStateCopyWith<TaskDetailState> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
+/// @nodoc
 abstract class $TaskDetailStateCopyWith<$Res> {
   factory $TaskDetailStateCopyWith(
           TaskDetailState value, $Res Function(TaskDetailState) then) =
       _$TaskDetailStateCopyWithImpl<$Res>;
-  $Res call(
-      {String authUserId,
-      Task task,
-      bool isFetching,
-      bool isError,
-      String errorMessage});
+  $Res call({DocumentReference<Task>? taskDocument});
 }
 
+/// @nodoc
 class _$TaskDetailStateCopyWithImpl<$Res>
     implements $TaskDetailStateCopyWith<$Res> {
   _$TaskDetailStateCopyWithImpl(this._value, this._then);
@@ -68,40 +56,28 @@ class _$TaskDetailStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object authUserId = freezed,
-    Object task = freezed,
-    Object isFetching = freezed,
-    Object isError = freezed,
-    Object errorMessage = freezed,
+    Object? taskDocument = freezed,
   }) {
     return _then(_value.copyWith(
-      authUserId:
-          authUserId == freezed ? _value.authUserId : authUserId as String,
-      task: task == freezed ? _value.task : task as Task,
-      isFetching:
-          isFetching == freezed ? _value.isFetching : isFetching as bool,
-      isError: isError == freezed ? _value.isError : isError as bool,
-      errorMessage: errorMessage == freezed
-          ? _value.errorMessage
-          : errorMessage as String,
+      taskDocument: taskDocument == freezed
+          ? _value.taskDocument
+          : taskDocument // ignore: cast_nullable_to_non_nullable
+              as DocumentReference<Task>?,
     ));
   }
 }
 
+/// @nodoc
 abstract class _$TaskDetailStateCopyWith<$Res>
     implements $TaskDetailStateCopyWith<$Res> {
   factory _$TaskDetailStateCopyWith(
           _TaskDetailState value, $Res Function(_TaskDetailState) then) =
       __$TaskDetailStateCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {String authUserId,
-      Task task,
-      bool isFetching,
-      bool isError,
-      String errorMessage});
+  $Res call({DocumentReference<Task>? taskDocument});
 }
 
+/// @nodoc
 class __$TaskDetailStateCopyWithImpl<$Res>
     extends _$TaskDetailStateCopyWithImpl<$Res>
     implements _$TaskDetailStateCopyWith<$Res> {
@@ -114,122 +90,58 @@ class __$TaskDetailStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object authUserId = freezed,
-    Object task = freezed,
-    Object isFetching = freezed,
-    Object isError = freezed,
-    Object errorMessage = freezed,
+    Object? taskDocument = freezed,
   }) {
     return _then(_TaskDetailState(
-      authUserId:
-          authUserId == freezed ? _value.authUserId : authUserId as String,
-      task: task == freezed ? _value.task : task as Task,
-      isFetching:
-          isFetching == freezed ? _value.isFetching : isFetching as bool,
-      isError: isError == freezed ? _value.isError : isError as bool,
-      errorMessage: errorMessage == freezed
-          ? _value.errorMessage
-          : errorMessage as String,
+      taskDocument: taskDocument == freezed
+          ? _value.taskDocument
+          : taskDocument // ignore: cast_nullable_to_non_nullable
+              as DocumentReference<Task>?,
     ));
   }
 }
 
-@JsonSerializable()
-class _$_TaskDetailState implements _TaskDetailState {
-  const _$_TaskDetailState(
-      {this.authUserId = '',
-      this.task,
-      this.isFetching = false,
-      this.isError = false,
-      this.errorMessage = ''})
-      : assert(authUserId != null),
-        assert(isFetching != null),
-        assert(isError != null),
-        assert(errorMessage != null);
+/// @nodoc
 
-  factory _$_TaskDetailState.fromJson(Map<String, dynamic> json) =>
-      _$_$_TaskDetailStateFromJson(json);
+class _$_TaskDetailState extends _TaskDetailState {
+  _$_TaskDetailState({this.taskDocument}) : super._();
 
-  @JsonKey(defaultValue: '')
   @override
-  final String authUserId;
-  @override
-  final Task task;
-  @JsonKey(defaultValue: false)
-  @override
-  final bool isFetching;
-  @JsonKey(defaultValue: false)
-  @override
-  final bool isError;
-  @JsonKey(defaultValue: '')
-  @override
-  final String errorMessage;
+  final DocumentReference<Task>? taskDocument;
 
   @override
   String toString() {
-    return 'TaskDetailState(authUserId: $authUserId, task: $task, isFetching: $isFetching, isError: $isError, errorMessage: $errorMessage)';
+    return 'TaskDetailState(taskDocument: $taskDocument)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _TaskDetailState &&
-            (identical(other.authUserId, authUserId) ||
-                const DeepCollectionEquality()
-                    .equals(other.authUserId, authUserId)) &&
-            (identical(other.task, task) ||
-                const DeepCollectionEquality().equals(other.task, task)) &&
-            (identical(other.isFetching, isFetching) ||
-                const DeepCollectionEquality()
-                    .equals(other.isFetching, isFetching)) &&
-            (identical(other.isError, isError) ||
-                const DeepCollectionEquality()
-                    .equals(other.isError, isError)) &&
-            (identical(other.errorMessage, errorMessage) ||
-                const DeepCollectionEquality()
-                    .equals(other.errorMessage, errorMessage)));
+        (other.runtimeType == runtimeType &&
+            other is _TaskDetailState &&
+            const DeepCollectionEquality()
+                .equals(other.taskDocument, taskDocument));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(authUserId) ^
-      const DeepCollectionEquality().hash(task) ^
-      const DeepCollectionEquality().hash(isFetching) ^
-      const DeepCollectionEquality().hash(isError) ^
-      const DeepCollectionEquality().hash(errorMessage);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(taskDocument));
 
+  @JsonKey(ignore: true)
   @override
   _$TaskDetailStateCopyWith<_TaskDetailState> get copyWith =>
       __$TaskDetailStateCopyWithImpl<_TaskDetailState>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$_$_TaskDetailStateToJson(this);
-  }
 }
 
-abstract class _TaskDetailState implements TaskDetailState {
-  const factory _TaskDetailState(
-      {String authUserId,
-      Task task,
-      bool isFetching,
-      bool isError,
-      String errorMessage}) = _$_TaskDetailState;
-
-  factory _TaskDetailState.fromJson(Map<String, dynamic> json) =
-      _$_TaskDetailState.fromJson;
+abstract class _TaskDetailState extends TaskDetailState {
+  factory _TaskDetailState({DocumentReference<Task>? taskDocument}) =
+      _$_TaskDetailState;
+  _TaskDetailState._() : super._();
 
   @override
-  String get authUserId;
+  DocumentReference<Task>? get taskDocument;
   @override
-  Task get task;
-  @override
-  bool get isFetching;
-  @override
-  bool get isError;
-  @override
-  String get errorMessage;
-  @override
-  _$TaskDetailStateCopyWith<_TaskDetailState> get copyWith;
+  @JsonKey(ignore: true)
+  _$TaskDetailStateCopyWith<_TaskDetailState> get copyWith =>
+      throw _privateConstructorUsedError;
 }

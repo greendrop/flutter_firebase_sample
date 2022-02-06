@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'task_delete_state.dart';
 
@@ -8,49 +9,33 @@ part of 'task_delete_state.dart';
 // **************************************************************************
 
 T _$identity<T>(T value) => value;
-TaskDeleteState _$TaskDeleteStateFromJson(Map<String, dynamic> json) {
-  return _TaskDeleteState.fromJson(json);
-}
 
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
+/// @nodoc
 class _$TaskDeleteStateTearOff {
   const _$TaskDeleteStateTearOff();
 
-// ignore: unused_element
-  _TaskDeleteState call(
-      {String authUserId = '',
-      bool isDeleting = false,
-      bool isError = false,
-      String errorMessage = ''}) {
-    return _TaskDeleteState(
-      authUserId: authUserId,
-      isDeleting: isDeleting,
-      isError: isError,
-      errorMessage: errorMessage,
-    );
+  _TaskDeleteState call() {
+    return _TaskDeleteState();
   }
 }
 
-// ignore: unused_element
+/// @nodoc
 const $TaskDeleteState = _$TaskDeleteStateTearOff();
 
-mixin _$TaskDeleteState {
-  String get authUserId;
-  bool get isDeleting;
-  bool get isError;
-  String get errorMessage;
+/// @nodoc
+mixin _$TaskDeleteState {}
 
-  Map<String, dynamic> toJson();
-  $TaskDeleteStateCopyWith<TaskDeleteState> get copyWith;
-}
-
+/// @nodoc
 abstract class $TaskDeleteStateCopyWith<$Res> {
   factory $TaskDeleteStateCopyWith(
           TaskDeleteState value, $Res Function(TaskDeleteState) then) =
       _$TaskDeleteStateCopyWithImpl<$Res>;
-  $Res call(
-      {String authUserId, bool isDeleting, bool isError, String errorMessage});
 }
 
+/// @nodoc
 class _$TaskDeleteStateCopyWithImpl<$Res>
     implements $TaskDeleteStateCopyWith<$Res> {
   _$TaskDeleteStateCopyWithImpl(this._value, this._then);
@@ -58,37 +43,16 @@ class _$TaskDeleteStateCopyWithImpl<$Res>
   final TaskDeleteState _value;
   // ignore: unused_field
   final $Res Function(TaskDeleteState) _then;
-
-  @override
-  $Res call({
-    Object authUserId = freezed,
-    Object isDeleting = freezed,
-    Object isError = freezed,
-    Object errorMessage = freezed,
-  }) {
-    return _then(_value.copyWith(
-      authUserId:
-          authUserId == freezed ? _value.authUserId : authUserId as String,
-      isDeleting:
-          isDeleting == freezed ? _value.isDeleting : isDeleting as bool,
-      isError: isError == freezed ? _value.isError : isError as bool,
-      errorMessage: errorMessage == freezed
-          ? _value.errorMessage
-          : errorMessage as String,
-    ));
-  }
 }
 
-abstract class _$TaskDeleteStateCopyWith<$Res>
-    implements $TaskDeleteStateCopyWith<$Res> {
+/// @nodoc
+abstract class _$TaskDeleteStateCopyWith<$Res> {
   factory _$TaskDeleteStateCopyWith(
           _TaskDeleteState value, $Res Function(_TaskDeleteState) then) =
       __$TaskDeleteStateCopyWithImpl<$Res>;
-  @override
-  $Res call(
-      {String authUserId, bool isDeleting, bool isError, String errorMessage});
 }
 
+/// @nodoc
 class __$TaskDeleteStateCopyWithImpl<$Res>
     extends _$TaskDeleteStateCopyWithImpl<$Res>
     implements _$TaskDeleteStateCopyWith<$Res> {
@@ -98,114 +62,29 @@ class __$TaskDeleteStateCopyWithImpl<$Res>
 
   @override
   _TaskDeleteState get _value => super._value as _TaskDeleteState;
-
-  @override
-  $Res call({
-    Object authUserId = freezed,
-    Object isDeleting = freezed,
-    Object isError = freezed,
-    Object errorMessage = freezed,
-  }) {
-    return _then(_TaskDeleteState(
-      authUserId:
-          authUserId == freezed ? _value.authUserId : authUserId as String,
-      isDeleting:
-          isDeleting == freezed ? _value.isDeleting : isDeleting as bool,
-      isError: isError == freezed ? _value.isError : isError as bool,
-      errorMessage: errorMessage == freezed
-          ? _value.errorMessage
-          : errorMessage as String,
-    ));
-  }
 }
 
-@JsonSerializable()
-class _$_TaskDeleteState implements _TaskDeleteState {
-  const _$_TaskDeleteState(
-      {this.authUserId = '',
-      this.isDeleting = false,
-      this.isError = false,
-      this.errorMessage = ''})
-      : assert(authUserId != null),
-        assert(isDeleting != null),
-        assert(isError != null),
-        assert(errorMessage != null);
+/// @nodoc
 
-  factory _$_TaskDeleteState.fromJson(Map<String, dynamic> json) =>
-      _$_$_TaskDeleteStateFromJson(json);
-
-  @JsonKey(defaultValue: '')
-  @override
-  final String authUserId;
-  @JsonKey(defaultValue: false)
-  @override
-  final bool isDeleting;
-  @JsonKey(defaultValue: false)
-  @override
-  final bool isError;
-  @JsonKey(defaultValue: '')
-  @override
-  final String errorMessage;
+class _$_TaskDeleteState extends _TaskDeleteState {
+  _$_TaskDeleteState() : super._();
 
   @override
   String toString() {
-    return 'TaskDeleteState(authUserId: $authUserId, isDeleting: $isDeleting, isError: $isError, errorMessage: $errorMessage)';
+    return 'TaskDeleteState()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _TaskDeleteState &&
-            (identical(other.authUserId, authUserId) ||
-                const DeepCollectionEquality()
-                    .equals(other.authUserId, authUserId)) &&
-            (identical(other.isDeleting, isDeleting) ||
-                const DeepCollectionEquality()
-                    .equals(other.isDeleting, isDeleting)) &&
-            (identical(other.isError, isError) ||
-                const DeepCollectionEquality()
-                    .equals(other.isError, isError)) &&
-            (identical(other.errorMessage, errorMessage) ||
-                const DeepCollectionEquality()
-                    .equals(other.errorMessage, errorMessage)));
+        (other.runtimeType == runtimeType && other is _TaskDeleteState);
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(authUserId) ^
-      const DeepCollectionEquality().hash(isDeleting) ^
-      const DeepCollectionEquality().hash(isError) ^
-      const DeepCollectionEquality().hash(errorMessage);
-
-  @override
-  _$TaskDeleteStateCopyWith<_TaskDeleteState> get copyWith =>
-      __$TaskDeleteStateCopyWithImpl<_TaskDeleteState>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$_$_TaskDeleteStateToJson(this);
-  }
+  int get hashCode => runtimeType.hashCode;
 }
 
-abstract class _TaskDeleteState implements TaskDeleteState {
-  const factory _TaskDeleteState(
-      {String authUserId,
-      bool isDeleting,
-      bool isError,
-      String errorMessage}) = _$_TaskDeleteState;
-
-  factory _TaskDeleteState.fromJson(Map<String, dynamic> json) =
-      _$_TaskDeleteState.fromJson;
-
-  @override
-  String get authUserId;
-  @override
-  bool get isDeleting;
-  @override
-  bool get isError;
-  @override
-  String get errorMessage;
-  @override
-  _$TaskDeleteStateCopyWith<_TaskDeleteState> get copyWith;
+abstract class _TaskDeleteState extends TaskDeleteState {
+  factory _TaskDeleteState() = _$_TaskDeleteState;
+  _TaskDeleteState._() : super._();
 }
