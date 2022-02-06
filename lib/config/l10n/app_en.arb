@@ -1,6 +1,8 @@
 {
   "@@locale": "en",
   "appTitle": "Firebase Sample",
+  "ok": "OK",
+  "cancel": "Cancel",
   "signIn": "Sign in",
   "signOut": "Sign out",
   "create": "Create",
@@ -30,6 +32,8 @@
   "taskTitleValidateTooLong": "Title is too long (maximum is 255 characters)",
   "taskCreated": "Created task.",
   "taskUpdated": "Updated task.",
+  "taskDeleteConfirm": "Are you sure?",
+  "taskDeleted": "Deleted task.",
   "taskListTitle": "Task list",
   "taskCreateTitle": "Task create",
   "taskUpdateTitle": "Task update",

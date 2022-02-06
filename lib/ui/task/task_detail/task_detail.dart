@@ -9,6 +9,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 // Project imports:
 import 'package:flutter_firebase_sample/config/routes/app_router.dart';
 import 'package:flutter_firebase_sample/entities/task.dart';
+import 'package:flutter_firebase_sample/providers/task/task_delete_state_notifier_provider.dart';
 
 class TaskDetail extends HookConsumerWidget {
   const TaskDetail({Key? key, required this.task}) : super(key: key);
@@ -19,6 +20,41 @@ class TaskDetail extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
     final l10n = L10n.of(context)!;
+
+    final editButton = TextButton(
+      onPressed: () {
+        AutoRouter.of(context).push(TaskUpdateRoute(id: task.id ?? ''));
+      },
+      child: Text(l10n.edit),
+    );
+    final deleteButton = TextButton(
+      onPressed: () async {
+        final result = await _showDeleteDialog(context);
+        if (result == 'OK') {
+          try {
+            final navigatorState = Navigator.of(context);
+            final scaffoldMessengerState = ScaffoldMessenger.of(context);
+
+            await ref
+                .read(taskDeleteStateNotifierProvider.notifier)
+                .deleteTask(task);
+
+            final snackBar = SnackBar(content: Text(l10n.taskDeleted));
+            scaffoldMessengerState.showSnackBar(snackBar);
+            navigatorState.pop();
+          } on Exception catch (_) {
+            final snackBar = SnackBar(content: Text(l10n.occurredError));
+            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          }
+        }
+      },
+      child: Text(
+        l10n.delete,
+        style: theme.textTheme.button?.copyWith(
+          color: Colors.red,
+        ),
+      ),
+    );
 
     return Card(
       child: Column(
@@ -97,16 +133,36 @@ class TaskDetail extends HookConsumerWidget {
               ),
             ],
           ),
-          Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-            TextButton(
-              onPressed: () {
-                AutoRouter.of(context).push(TaskUpdateRoute(id: task.id ?? ''));
-              },
-              child: Text(l10n.edit),
-            )
-          ])
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [editButton, deleteButton],
+          )
         ],
       ),
     );
+  }
+
+  Future<String?> _showDeleteDialog(BuildContext context) async {
+    final l10n = L10n.of(context)!;
+
+    return showDialog<String>(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text(l10n.delete),
+            content: Text(l10n.taskDeleteConfirm),
+            actions: <Widget>[
+              TextButton(
+                child: Text(l10n.cancel),
+                onPressed: () => Navigator.pop(context, 'CANCEL'),
+              ),
+              TextButton(
+                child: Text(l10n.ok),
+                onPressed: () => Navigator.pop(context, 'OK'),
+              )
+            ],
+          );
+        });
   }
 }

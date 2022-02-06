@@ -1,6 +1,8 @@
 {
   "@@locale": "ja",
   "appTitle": "Firebase Sample",
+  "ok": "OK",
+  "cancel": "キャンセル",
   "signIn": "ログイン",
   "signOut": "ログアウト",
   "create": "登録",
@@ -30,6 +32,8 @@
   "taskTitleValidateTooLong": "タイトルは255文字以内で入力してください",
   "taskCreated": "タスクを登録しました。",
   "taskUpdated": "タスクを更新しました。",
+  "taskDeleteConfirm": "よろしいですか？",
+  "taskDeleted": "タスクを削除しました。",
   "taskListTitle": "タスク一覧",
   "taskCreateTitle": "タスク登録",
   "taskUpdateTitle": "タスク更新",
