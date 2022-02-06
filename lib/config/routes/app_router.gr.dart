@@ -51,6 +51,14 @@ class _$AppRouter extends RootStackRouter {
       return MaterialPageX<Widget>(
           routeData: routeData,
           child: TaskDetailPage(key: args.key, id: args.id));
+    },
+    TaskUpdateRoute.name: (routeData) {
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<TaskUpdateRouteArgs>(
+          orElse: () => TaskUpdateRouteArgs(id: pathParams.getString('id')));
+      return MaterialPageX<Widget>(
+          routeData: routeData,
+          child: TaskUpdatePage(key: args.key, id: args.id));
     }
   };
 
@@ -67,7 +75,9 @@ class _$AppRouter extends RootStackRouter {
         RouteConfig(TaskCreateRoute.name,
             path: '/task/new', guards: [appRouterAuthGuard]),
         RouteConfig(TaskDetailRoute.name,
-            path: '/task/:id', guards: [appRouterAuthGuard])
+            path: '/task/:id', guards: [appRouterAuthGuard]),
+        RouteConfig(TaskUpdateRoute.name,
+            path: '/task/:id/edit', guards: [appRouterAuthGuard])
       ];
 }
 
@@ -141,5 +151,30 @@ class TaskDetailRouteArgs {
   @override
   String toString() {
     return 'TaskDetailRouteArgs{key: $key, id: $id}';
+  }
+}
+
+/// generated route for
+/// [TaskUpdatePage]
+class TaskUpdateRoute extends PageRouteInfo<TaskUpdateRouteArgs> {
+  TaskUpdateRoute({Key? key, required String id})
+      : super(TaskUpdateRoute.name,
+            path: '/task/:id/edit',
+            args: TaskUpdateRouteArgs(key: key, id: id),
+            rawPathParams: {'id': id});
+
+  static const String name = 'TaskUpdateRoute';
+}
+
+class TaskUpdateRouteArgs {
+  const TaskUpdateRouteArgs({this.key, required this.id});
+
+  final Key? key;
+
+  final String id;
+
+  @override
+  String toString() {
+    return 'TaskUpdateRouteArgs{key: $key, id: $id}';
   }
 }

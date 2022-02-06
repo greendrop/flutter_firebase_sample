@@ -22,7 +22,7 @@ class TaskListStateNotifier extends StateNotifier<TaskListState> {
         .withConverter<Task>(
           fromFirestore: (snapshot, _) =>
               Task.fromFirestoreJson(snapshot.id, snapshot.data()!),
-          toFirestore: (task, _) => task.toJson(),
+          toFirestore: (task, _) => task.toFirestoreJson(),
         );
     state = state.copyWith(taskListQuery: taskListQuery);
   }

@@ -39,6 +39,7 @@ class TaskFormFields extends HookConsumerWidget {
       children: [
         TextFormField(
           decoration: InputDecoration(labelText: l10n.taskTitle),
+          initialValue: initialTitle,
           validator: (value) => Task.titleValidator(value, l10n),
           autovalidateMode: AutovalidateMode.onUserInteraction,
           onSaved: onSavedTitle,
@@ -47,6 +48,7 @@ class TaskFormFields extends HookConsumerWidget {
           decoration: InputDecoration(labelText: l10n.taskDescription),
           keyboardType: TextInputType.multiline,
           maxLines: null,
+          initialValue: initialDescription,
           validator: (value) => Task.descriptionValidator(value, l10n),
           autovalidateMode: AutovalidateMode.onUserInteraction,
           onSaved: onSavedDescription,

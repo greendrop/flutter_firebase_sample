@@ -17,7 +17,7 @@ class TaskDetailStateNotifier extends StateNotifier<TaskDetailState> {
         firebaseFirestore.collection('tasks').doc(id).withConverter<Task>(
               fromFirestore: (snapshot, _) =>
                   Task.fromFirestoreJson(snapshot.id, snapshot.data()!),
-              toFirestore: (task, _) => task.toJson(),
+              toFirestore: (task, _) => task.toFirestoreJson(),
             );
     state = state.copyWith(taskDocument: taskDocument);
   }

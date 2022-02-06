@@ -34,7 +34,7 @@ class Task with _$Task {
   }
 
   Map<String, dynamic> toFirestoreJson() {
-    final json = toJson();
+    final json = toJson()..remove('id');
     if (json['created_at'] != null) {
       json['created_at'] =
           Timestamp.fromDate(DateTime.parse(json['created_at'] as String));
